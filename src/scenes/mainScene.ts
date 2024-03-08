@@ -75,7 +75,7 @@ export default class MainScene extends Phaser.Scene {
             undefined,
             this
         ); */
-        if(key[0] == false){
+        if(key[0]){
             this.keyText = this.add.text(16, 16, "key: not found", {
                 fontSize: "32px",
                 color: "#000",
@@ -106,7 +106,7 @@ export default class MainScene extends Phaser.Scene {
             .setScale(.5)
             .setName("attic_door")
             .setInteractive().on("pointerdown", () => {
-                if(key[0] == true){
+                if(key[0]){
                 this.scene.stop("MainScene").launch(attic_door.name, key);
                 }
                 else{

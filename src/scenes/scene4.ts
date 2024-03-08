@@ -34,7 +34,7 @@ export default class thirdScene extends Phaser.Scene {
         this.player = this.physics.add.sprite(200, 200, "player").setScale(1.5);
         this.player.setCollideWorldBounds(true);
         const key_image = this.add.image(210, 490, "key").setScale(.1).setInteractive().on("pointerdown", () => {
-            if(key[0] == false){
+            if(key[0]){
                 key[0] = true;
                 key_image.setVisible(false);
             }
