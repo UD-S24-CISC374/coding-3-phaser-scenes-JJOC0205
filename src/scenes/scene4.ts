@@ -38,7 +38,7 @@ export default class thirdScene extends Phaser.Scene {
                 key[0] = true;
                 key_image.setVisible(false);
             }
-        });;
+        });
         
         this.anims.create({
             key: "left",

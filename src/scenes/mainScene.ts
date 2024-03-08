@@ -56,25 +56,6 @@ export default class MainScene extends Phaser.Scene {
         });
         this.physics.add.collider(this.player, this.platforms);
         this.cursors = this.input.keyboard?.createCursorKeys();
-
-        /* this.stars = this.physics.add.group({
-            key: "star",
-            repeat: 1,
-            setXY: { x: 12, y: 0, stepX: 70 },
-        });
-        this.stars.children.iterate((child) => {
-            const star = child as Phaser.Physics.Arcade.Image;
-            star.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
-            return true;
-        }); */
-        //this.physics.add.collider(this.stars, this.platforms);
-        /* this.physics.add.overlap(
-            this.player,
-            this.stars,
-            this.handleCollectStar,
-            undefined,
-            this
-        ); */
         if(key[0]){
             this.keyText = this.add.text(16, 16, "key: not found", {
                 fontSize: "32px",
@@ -116,48 +97,7 @@ export default class MainScene extends Phaser.Scene {
                     });
                 }
             });
-        /* this.physics.add.collider(
-            this.player,
-            this.bombs,
-            this.handleHitBomb,
-            undefined,
-            this
-        ); */
     }
-    /* private handleHitBomb() {
-        this.physics.pause();
-        this.player.setTint(0xff0000);
-        this.player.anims.play("turn");
-        this.gameOver = true;
-    }
-    private handleCollectStar(
-        player:
-            | Phaser.Types.Physics.Arcade.GameObjectWithBody
-            | Phaser.Tilemaps.Tile,
-        star:
-            | Phaser.Types.Physics.Arcade.GameObjectWithBody
-            | Phaser.Tilemaps.Tile
-    ) {
-        const s = star as Phaser.Physics.Arcade.Image;
-        s.disableBody(true, true);
-        this.score += 10;
-        this.scoreText.setText(`Score: ${this.score}`);
-        if (this.stars?.countActive(true) === 0) {
-            this.stars.children.iterate((child) => {
-                const c = child as Phaser.Physics.Arcade.Image;
-                c.enableBody(true, c.x, 0, true, true);
-                return true;
-            });
-            const x =
-                this.player.x < 400
-                    ? Phaser.Math.Between(400, 800)
-                    : Phaser.Math.Between(0, 400);
-            const bomb = this.bombs.create(x, 16, "bomb");
-            bomb.setBounce(1);
-            bomb.setCollideWorldBounds(true);
-        }
-    } */
-
     update() {
         if (!this.cursors) {
             return;
