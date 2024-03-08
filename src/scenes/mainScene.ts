@@ -56,7 +56,7 @@ export default class MainScene extends Phaser.Scene {
         });
         this.physics.add.collider(this.player, this.platforms);
         this.cursors = this.input.keyboard?.createCursorKeys();
-        if(key[0]){
+        if(!key[0]){
             this.keyText = this.add.text(16, 16, "key: not found", {
                 fontSize: "32px",
                 color: "#000",

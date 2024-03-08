@@ -4,7 +4,7 @@ export default class thirdScene extends Phaser.Scene {
     private player: Phaser.Physics.Arcade.Sprite;
     private cursors?: Phaser.Types.Input.Keyboard.CursorKeys;
     private platforms?: Phaser.Physics.Arcade.StaticGroup;
-    private points: Phaser.GameObjects.Text;
+    private keyText: Phaser.GameObjects.Text;
     exit: Phaser.GameObjects.Rectangle;
 
     constructor() {
@@ -34,12 +34,23 @@ export default class thirdScene extends Phaser.Scene {
         this.player = this.physics.add.sprite(200, 200, "player").setScale(1.5);
         this.player.setCollideWorldBounds(true);
         const key_image = this.add.image(210, 490, "key").setScale(.1).setInteractive().on("pointerdown", () => {
-            if(key[0]){
+            if(!key[0]){
                 key[0] = true;
                 key_image.setVisible(false);
             }
         });
-        
+        if(!key[0]){
+            this.keyText = this.add.text(106, 16, "key: not found", {
+                fontSize: "32px",
+                color: "#000",
+            });
+        } 
+        else {
+            this.keyText = this.add.text(106, 16, "key: found", {
+                fontSize: "32px",
+                color: "#000",
+            });
+        }
         this.anims.create({
             key: "left",
             frames: this.anims.generateFrameNumbers("player", {

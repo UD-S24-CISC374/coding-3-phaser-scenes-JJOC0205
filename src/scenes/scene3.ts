@@ -4,7 +4,7 @@ export default class thirdScene extends Phaser.Scene {
     private player: Phaser.Physics.Arcade.Sprite;
     private cursors?: Phaser.Types.Input.Keyboard.CursorKeys;
     private platforms?: Phaser.Physics.Arcade.StaticGroup;
-    private points: Phaser.GameObjects.Text;
+    private keyText: Phaser.GameObjects.Text;
     exit: Phaser.GameObjects.Rectangle;
 
     constructor() {
@@ -18,7 +18,7 @@ export default class thirdScene extends Phaser.Scene {
             frameHeight: 48,
         });
     }
-    create(points:number[]){
+    create(key:boolean[]){
         const background = this.add.image(640, 390, "bedroom");
         background.setScale(4.5);
 
@@ -63,8 +63,20 @@ export default class thirdScene extends Phaser.Scene {
         this.exit = this.add.rectangle(50, 50, 50, 50, 0x000000);
         this.exit.setInteractive().on("pointerdown", () => {
             this.exit.setVisible(false);
-            this.scene.stop("bedroom_door").launch("MainScene", points);
+            this.scene.stop("bedroom_door").launch("MainScene", key);
         });
+        if(!key[0]){
+            this.keyText = this.add.text(106, 16, "key: not found", {
+                fontSize: "32px",
+                color: "#000",
+            });
+        } 
+        else {
+            this.keyText = this.add.text(106, 16, "key: found", {
+                fontSize: "32px",
+                color: "#000",
+            });
+        }
 
     }
     update() {
